@@ -109,17 +109,17 @@ export class GamePage {
 	getUpperValidationArray(elementName){
 		switch(elementName){
 			case 'ones': 				
-				return ['X','x','-1','+1','-2','+2'];
+				return ['X','x','-1','+1','1','-2','+2','2'];
 			case 'twos': 
-				return ['X','x','-2','+2','-4','+4'];
+				return ['X','x','-2','+2','2','-4','+4','4'];
 			case 'threes': 
-				return ['X','x','-3','+3','-6','+6'];
+				return ['X','x','-3','+3','3','-6','+6','6'];
 			case 'fours': 
-				return ['X','x','-4','+4','-8','+8'];
+				return ['X','x','-4','+4','4','-8','+8','8'];
 			case 'fives': 
-				return ['X','x','-5','+5','-10','+10'];
+				return ['X','x','-5','+5','5','-10','+10','10'];
 			case 'sixes': 
-				return ['X','x','-6','+6','-12','+12'];
+				return ['X','x','-6','+6','6','-12','+12','12'];
 		}
 	}
 }

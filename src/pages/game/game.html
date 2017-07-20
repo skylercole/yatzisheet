@@ -20,13 +20,13 @@
 			<ion-row nowrap>
 				<ion-col >
 				</ion-col>
-				<ion-col *ngFor="let x of players">
+				<ion-col *ngFor="let x of players" style="font-weight: bold;">
 					<ion-item>{{x.name}}</ion-item>
 				</ion-col>
 			</ion-row>		
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Ones</ion-item>
+					<img src="img/ones.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Ones" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "ones")' [(ngModel)]="x.ones" 
@@ -35,7 +35,7 @@
 			</ion-row>			
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Twos</ion-item>
+					<img src="img/twos.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Twos" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "twos")' [(ngModel)]="x.twos" 
@@ -44,7 +44,7 @@
 			</ion-row>			
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Threes</ion-item>
+					<img src="img/threes.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Threes" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "threes")' [(ngModel)]="x.threes" 
@@ -53,7 +53,7 @@
 			</ion-row>			
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Fours</ion-item>
+					<img src="img/fours.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Fours" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "fours")' [(ngModel)]="x.fours" 
@@ -62,7 +62,7 @@
 			</ion-row>			
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Fives</ion-item>
+					<img src="img/fives.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Fives" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "fives")' [(ngModel)]="x.fives" 
@@ -71,7 +71,7 @@
 			</ion-row>			
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Sixes</ion-item>
+					<img src="img/sixes.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
 					<ion-input type="text" placeholder="Sixes" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "sixes")' [(ngModel)]="x.sixes" 
@@ -80,7 +80,7 @@
 			</ion-row>		
 			<ion-row nowrap>
 				<ion-col >
-					<ion-item>Total</ion-item>
+					<ion-item style="font-weight: bold;">Total</ion-item>
 				</ion-col>
 				<ion-col *ngFor="let x of players" style="font-weight: bold;">
 					<ion-item>{{x.upperTotal}}</ion-item>
