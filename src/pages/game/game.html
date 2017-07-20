@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon class="ion-ios-game-controller-b" item-left></ion-icon>&nbsp;&nbsp;&nbsp;Game</ion-title>	
+	
+		<ion-buttons end>
+			<button (click)="addPlayer()">
+			<ion-icon class="ion-ios-person-add"></ion-icon>
+			</button>
+		</ion-buttons>
+			
+	</ion-navbar>  
+</ion-header>
+
+<ion-content no-padding>
+
+	 <ion-grid no-padding>
+			<ion-row nowrap>
+				<ion-col >
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-item>{{x.name}}</ion-item>
+				</ion-col>
+			</ion-row>		
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Ones</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Ones" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "ones")' [(ngModel)]="x.ones" 
+					[attr.id]="x.name+'[ones]'"></ion-input>
+				</ion-col>
+			</ion-row>			
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Twos</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Twos" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "twos")' [(ngModel)]="x.twos" 
+					[attr.id]="x.name+'[twos]'"></ion-input>
+				</ion-col>
+			</ion-row>			
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Threes</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Threes" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "threes")' [(ngModel)]="x.threes" 
+					[attr.id]="x.name+'[threes]'"></ion-input>
+				</ion-col>
+			</ion-row>			
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Fours</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Fours" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "fours")' [(ngModel)]="x.fours" 
+					[attr.id]="x.name+'[fours]'"></ion-input>
+				</ion-col>
+			</ion-row>			
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Fives</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Fives" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "fives")' [(ngModel)]="x.fives" 
+					[attr.id]="x.name+'[fives]'"></ion-input>
+				</ion-col>
+			</ion-row>			
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Sixes</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input type="text" placeholder="Sixes" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "sixes")' [(ngModel)]="x.sixes" 
+					[attr.id]="x.name+'[sixes]'"></ion-input>
+				</ion-col>
+			</ion-row>		
+			<ion-row nowrap>
+				<ion-col >
+					<ion-item>Total</ion-item>
+				</ion-col>
+				<ion-col *ngFor="let x of players" style="font-weight: bold;">
+					<ion-item>{{x.upperTotal}}</ion-item>
+				</ion-col>
+			</ion-row>					
+	  </ion-grid>   
+  
+</ion-content>
