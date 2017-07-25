@@ -6,32 +6,39 @@ import { MyApp } from './app.component';
 import { GamePage } from '../pages/game/game';
 import { PlayersPage } from '../pages/players/players';
 import { StatisticsPage } from '../pages/statistics/statistics';
+import { PopoverPage } from '../pages/popover/popover';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {PlayersData} from './playersdata';
+import {PlayersBase} from './playersdata';
 
 @NgModule({
   declarations: [
     MyApp,
     GamePage,
     PlayersPage,
-    StatisticsPage
+    StatisticsPage	,
+	PopoverPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     GamePage,
     PlayersPage,
-    StatisticsPage
+    StatisticsPage,
+	PopoverPage
   ],
-  providers: [
+  providers: [	
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+	PlayersData, PlayersBase
   ]
 })
 export class AppModule {}

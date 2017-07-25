@@ -3,89 +3,237 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon class="ion-ios-game-controller-b" item-left></ion-icon>&nbsp;&nbsp;&nbsp;Game</ion-title>	
-	
+    <ion-title><ion-icon class="ion-ios-game-controller-b" item-left></ion-icon>&nbsp;&nbsp;&nbsp;Game</ion-title>		
 		<ion-buttons end>
-			<button (click)="addPlayer()">
-			<ion-icon class="ion-ios-person-add"></ion-icon>
+			<button ion-button item-right clear (click)='addPlayers($event)'>
+				<ion-icon class="ion-ios-person-add" style="font-size: 40px;"></ion-icon>
 			</button>
-		</ion-buttons>
-			
+			<button ion-button item-right clear (click)='resetValues()'>
+				<ion-icon class="ion-ios-refresh" style="font-size: 40px;"></ion-icon>
+			</button>
+		</ion-buttons>		
 	</ion-navbar>  
 </ion-header>
 
 <ion-content no-padding>
-
-	 <ion-grid no-padding>
-			<ion-row nowrap>
-				<ion-col >
+	 <ion-grid no-padding style="border:1px;" nowrap>
+			<ion-row>
+				<ion-col col-2>
 				</ion-col>
-				<ion-col *ngFor="let x of players" style="font-weight: bold;">
-					<ion-item>{{x.name}}</ion-item>
+				<ion-col *ngFor="let x of players">
+					<p style="font-weight: bold;text-align:center;">
+						{{x.name}} 
+						<button small clear item-right (click)='removePlayer(x)'>
+							<ion-icon class="ion-ios-close-outline"></ion-icon>
+						</button>
+					</p>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines text-center>
+						Add players
+						<button ion-button item-center clear (click)='addPlayers($event)'>
+							<ion-icon class="ion-ios-person-add" style="font-size: 40px;"></ion-icon>
+						</button>
+					</ion-item>
 				</ion-col>
 			</ion-row>		
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/ones.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Ones" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "ones")' [(ngModel)]="x.ones" 
+					<ion-input text-center type="text" placeholder="Ones" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "ones")' [(ngModel)]="x.ones" 
 					[attr.id]="x.name+'[ones]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>			
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/twos.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Twos" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "twos")' [(ngModel)]="x.twos" 
+					<ion-input text-center type="text" placeholder="Twos" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "twos")' [(ngModel)]="x.twos" 
 					[attr.id]="x.name+'[twos]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>			
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/threes.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Threes" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "threes")' [(ngModel)]="x.threes" 
+					<ion-input text-center type="text" placeholder="Threes" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "threes")' [(ngModel)]="x.threes" 
 					[attr.id]="x.name+'[threes]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>			
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/fours.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Fours" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "fours")' [(ngModel)]="x.fours" 
+					<ion-input text-center type="text" placeholder="Fours" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "fours")' [(ngModel)]="x.fours" 
 					[attr.id]="x.name+'[fours]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>			
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/fives.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Fives" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "fives")' [(ngModel)]="x.fives" 
+					<ion-input text-center type="text" placeholder="Fives" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "fives")' [(ngModel)]="x.fives" 
 					[attr.id]="x.name+'[fives]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>			
-			<ion-row nowrap>
-				<ion-col >
+			<ion-row>
+				<ion-col col-2>
 					<img src="img/sixes.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of players">
-					<ion-input type="text" placeholder="Sixes" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "sixes")' [(ngModel)]="x.sixes" 
+					<ion-input text-center type="text" placeholder="Sixes" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "sixes")' [(ngModel)]="x.sixes" 
 					[attr.id]="x.name+'[sixes]'"></ion-input>
 				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
 			</ion-row>		
-			<ion-row nowrap>
-				<ion-col >
-					<ion-item style="font-weight: bold;">Total</ion-item>
+			<ion-row>
+				<ion-col col-2>
+					<p style="font-weight: bold;text-align:center;">Total</p>
 				</ion-col>
-				<ion-col *ngFor="let x of players" style="font-weight: bold;">
-					<ion-item>{{x.upperTotal}}</ion-item>
+				<ion-col *ngFor="let x of players" >
+					<p style="font-weight: bold;text-align:center;">{{x.upperTotal}}</p>
 				</ion-col>
-			</ion-row>					
-	  </ion-grid>   
-  
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/pair.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Pair" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "pair")' [(ngModel)]="x.pair" 
+					[attr.id]="x.name+'[pair]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/twopair.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Two pairs" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "twopair")' [(ngModel)]="x.twopair" 
+					[attr.id]="x.name+'[twopair]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/threesome.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Three of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "threesome")' [(ngModel)]="x.threesome" [attr.id]="x.name+'[threesome]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/foursome.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Four of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "foursome")' [(ngModel)]="x.foursome" [attr.id]="x.name+'[foursome]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/smallstraight.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Small straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "sStraight")' [(ngModel)]="x.sStraight" [attr.id]="x.name+'[sStraight]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/bigstraight.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Big straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "bStraight")' [(ngModel)]="x.bStraight" [attr.id]="x.name+'[bStraight]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/fullhouse.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Full house" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "fullhouse")' [(ngModel)]="x.fullhouse" 
+					[attr.id]="x.name+'[fullhouse]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/chance.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Chance" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "chance")' [(ngModel)]="x.chance" 
+					[attr.id]="x.name+'[chance]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>	
+			<ion-row>
+				<ion-col col-2>
+					<img src="img/yatzy.png"/>
+				</ion-col>
+				<ion-col *ngFor="let x of players">
+					<ion-input text-center type="text" placeholder="Yatzy" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "yatzy")' [(ngModel)]="x.yatzy" 
+					[attr.id]="x.name+'[yatzy]'"></ion-input>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-2>
+					<p style="font-weight: bold;text-align:center;">Total</p>
+				</ion-col>
+				<ion-col *ngFor="let x of players" >
+					<p style="font-weight: bold;text-align:center;">{{x.total}}</p>
+				</ion-col>
+				<ion-col *ngIf="players.length == 0">
+					<ion-item no-lines></ion-item>
+				</ion-col>	
+			</ion-row>				
+	  </ion-grid>     
 </ion-content>

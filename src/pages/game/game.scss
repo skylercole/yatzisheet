@@ -1,3 +1,15 @@
 page-game {
+	.col{
+		border: thin solid lightgray;
+		top: 50%;
+	}
 
+	.col img {
+		position:absolute;
+		left: 0;
+		right: 0;
+		margin:0 auto;
+		top:50%;
+		transform:translateY(-50%);
+	}
 }

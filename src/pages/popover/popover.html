@@ -1,0 +1,15 @@
+<ion-content>
+	<ion-list>
+      <!-- <ion-list-header>Add players to game</ion-list-header> -->
+	  <ion-item>
+		<ion-input type="text" placeholder="New player name" maxlength="20" [(ngModel)]="newPlayerName"></ion-input>		
+		<button ion-button item-right clear (click)='createPlayer()'>
+			Create
+		</button>
+	  </ion-item>
+	  <ion-item *ngFor="let x of playersInBase">
+		<ion-checkbox [(ngModel)]="x.isInGame" (click)='toGame(x.name, x.isInGame)'></ion-checkbox>
+		<ion-label>{{x.name}}</ion-label>
+	  </ion-item>
+    </ion-list>
+</ion-content>
