@@ -52,6 +52,7 @@ export class PlayersData {
   resetGameStats() {
 	  for (var index=0; index<this.players.length; index++ ) {
 			this.players[index].upperTotal = this.players[index].total = 0;
+			
 			this.players[index].ones = this.players[index].twos = this.players[index].threes = this.players[index].fours = this.players[index].fives = this.players[index].sixes =
 				this.players[index].pair = this.players[index].twopair = this.players[index].threesome = this.players[index].foursome = this.players[index].sStraight = 
 				this.players[index].bStraight = this.players[index].fullhouse = this.players[index].chance = this.players[index].yatzy = '';

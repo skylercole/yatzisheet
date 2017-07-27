@@ -7,6 +7,7 @@ import { GamePage } from '../pages/game/game';
 import { PlayersPage } from '../pages/players/players';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { PopoverPage } from '../pages/popover/popover';
+import { PopoverEndGamePage } from '../pages/popoverendgame/popoverendgame';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import {PlayersBase} from './playersdata';
     GamePage,
     PlayersPage,
     StatisticsPage	,
-	PopoverPage
+	PopoverPage,
+	PopoverEndGamePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {PlayersBase} from './playersdata';
     GamePage,
     PlayersPage,
     StatisticsPage,
-	PopoverPage
+	PopoverPage,
+	PopoverEndGamePage
   ],
   providers: [	
     StatusBar,

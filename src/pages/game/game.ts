@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PlayersData } from '../../app/playersdata';
+import { PlayersData, PlayersBase } from '../../app/playersdata';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../../pages/popover/popover';
+import { PopoverEndGamePage } from '../../pages/popoverendgame/popoverendgame';
 import { AlertController } from 'ionic-angular';
 
 @Component({
@@ -13,10 +14,12 @@ import { AlertController } from 'ionic-angular';
 export class GamePage {
 	players;
 	playersClass;
+	playersInBase;
 	
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController) {
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController, public playersBase: PlayersBase) {
 		this.players = playersData.players;
 		this.playersClass = playersData;
+		this.playersInBase = playersBase.players;
 	}
 	
 	addPlayers(myEvent) {
@@ -25,6 +28,7 @@ export class GamePage {
 		  ev: myEvent
 		});
 	}
+
 	
 	onChangeUpperSide(data, player, elementName){
 		var name = player.name + '[' + elementName + ']';
@@ -86,6 +90,9 @@ export class GamePage {
 		}
 		
 		this.players[index].total = this.calcLower(index) + this.players[index].upperTotal;
+		
+		if (this.isGameCompleted())
+			this.showCompleted();
 	}
 	
 	onChangeLowerSide(data, player, elementName){
@@ -140,6 +147,14 @@ export class GamePage {
 		
 		var index = this.players.findIndex(x => x.name == player.name);		
 		this.players[index].total = this.calcLower(index) + this.players[index].upperTotal;
+		
+		if (this.isGameCompleted())
+			this.showCompleted();
+	}
+	
+	showCompleted() {
+		let popover = this.popoverCtrl.create(PopoverEndGamePage);
+		popover.present();
 	}
 	
 	include(arr, obj) {
@@ -245,6 +260,12 @@ export class GamePage {
 			text: 'Remove',
 			handler: () => {
 			  this.playersClass.addNew(player.name, false);
+			  
+			  for (var index=0; index<this.playersInBase.length; index++ ) {
+					if (this.playersInBase[index].name == player.name ) {
+						this.playersInBase[index].isInGame = false;
+					}
+				}
 			}
 		  }
 		]
@@ -271,5 +292,29 @@ export class GamePage {
 		]
 	  });
 	  alert.present();
+	}
+	
+	isGameCompleted() {
+		for(var i=0; i< this.players.length; i++) {
+			if (this.players[i].ones == '' || this.players[i].ones == undefined ||
+				this.players[i].twos == '' || this.players[i].twos == undefined ||
+				this.players[i].threes == '' || this.players[i].threes == undefined ||
+				this.players[i].fours == '' || this.players[i].fours == undefined ||
+				this.players[i].fives == '' || this.players[i].fives == undefined ||
+				this.players[i].sixes == '' || this.players[i].sixes == undefined ||
+				this.players[i].pair == '' || this.players[i].pair == undefined ||
+				this.players[i].twopair == '' || this.players[i].twopair == undefined ||
+				this.players[i].threesome == '' || this.players[i].threesome == undefined ||
+				this.players[i].foursome == '' || this.players[i].foursome == undefined ||
+				this.players[i].sStraight == '' || this.players[i].sStraight == undefined ||
+				this.players[i].bStraight == '' || this.players[i].bStraight == undefined ||
+				this.players[i].fullhouse == '' || this.players[i].fullhouse == undefined ||
+				this.players[i].chance == '' || this.players[i].chance == undefined ||
+				this.players[i].yatzy == '' || this.players[i].yatzy == undefined
+			)
+				return false;
+		}
+		
+		return true;
 	}
 }

@@ -1,0 +1,44 @@
+<ion-content>
+	<!-- <ion-list> -->
+      <!-- <ion-list-header>Game results</ion-list-header> -->
+	  <!-- <ion-item *ngFor="let x of playersInGame"> -->
+		<!-- <ion-label>{{x.name}}</ion-label> -->
+		<!-- <ion-label>{{x.Total}}</ion-label> -->
+	  <!-- </ion-item> -->
+	  
+	  
+    <!-- </ion-list>	 -->
+	
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-item no-lines text-center>
+					Name
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-item no-lines text-center>
+					Total
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row *ngFor="let x of playersInGame">
+			<ion-col>
+				<ion-item text-center>
+					{{x.name}}
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-item text-right>
+					{{x.total}}
+				</ion-item>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<div text-center>
+		<button ion-button button-block (click)='close()' >
+			OK
+		</button>
+	</div>
+</ion-content>
