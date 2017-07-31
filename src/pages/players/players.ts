@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PlayersBase } from '../../app/playersdata';
+import { PlayersData } from '../../app/playersdata';
 import { AlertController } from 'ionic-angular';
 
 @Component({
@@ -11,12 +12,14 @@ import { AlertController } from 'ionic-angular';
 export class PlayersPage {
 	playersInBase;
 	playersInBaseClass;
+	playersInGameClass;
 	newPlayerName: string;
 	isRenaming: string;
 
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersBase: PlayersBase) {
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersBase: PlayersBase, public playersGame: PlayersData) {
 		this.playersInBase = playersBase.players;		
 		this.playersInBaseClass = playersBase;	
+		this.playersInGameClass = playersGame;	
 		this.isRenaming = '';
 	}	
 	
@@ -78,6 +81,7 @@ export class PlayersPage {
 		}
 		
 		this.playersInBaseClass.renamePlayer(name, data);
+		this.playersInGameClass.renamePlayer(name, data);
 		this.isRenaming = '';
 	}
 }

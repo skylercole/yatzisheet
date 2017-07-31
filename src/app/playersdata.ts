@@ -60,6 +60,11 @@ export class PlayersData {
 				this.players[index].bStraight = this.players[index].fullhouse = this.players[index].chance = this.players[index].yatzy = '';
 		}
   }
+  
+  renamePlayer(oldName, newName) {
+		var index = this.exists(oldName);
+		this.players[index].name = newName;
+  }
 }
   
 @Injectable()
@@ -70,15 +75,6 @@ export class PlayersBase {
   constructor(private nativeStorage: NativeStorage, platform: Platform) {
 	this.players = [];
 	
-	// platform.ready().then(() => {
-		// nativeStorage.getItem('yatzisheet').then(function (json) {
-			// console.log(json);
-			// if (json) {
-				// console.log(json);
-				// this.players = [];// JSON.parse(json);
-			// }
-		// });
-	// });
     // this.players = [
 			  // {name:'Stasho', isInGame: false, games: 15},
 			  // {name:'Kati', isInGame: false, games: 10},
