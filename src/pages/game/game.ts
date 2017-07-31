@@ -16,7 +16,8 @@ export class GamePage {
 	playersClass;
 	playersInBase;
 	
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController, public playersBase: PlayersBase) {
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController, public playersBase: PlayersBase) {		
+		this.playersBase.load();		
 		this.players = playersData.players;
 		this.playersClass = playersData;
 		this.playersInBase = playersBase.players;
@@ -28,7 +29,6 @@ export class GamePage {
 		  ev: myEvent
 		});
 	}
-
 	
 	onChangeUpperSide(data, player, elementName){
 		var name = player.name + '[' + elementName + ']';
@@ -36,6 +36,10 @@ export class GamePage {
 		if (data != "" && !this.include(this.getUpperValidationArray(elementName), data)) {
 			data = undefined;										
 			document.getElementById(name).style.border = "thin solid red";
+		}
+		else if (data == "") {
+			data = undefined;
+			document.getElementById(name).style.border = "none";
 		}
 		else {
 			document.getElementById(name).style.border = "none";
@@ -101,6 +105,10 @@ export class GamePage {
 		if (data != "" && !this.include(this.getLowerValidationArray(elementName), data)) {
 			data = undefined;										
 			document.getElementById(name).style.border = "thin solid red";
+		}
+		else if (data == "") {
+			data = undefined;
+			document.getElementById(name).style.border = "none";
 		}
 		else {
 			document.getElementById(name).style.border = "none";
@@ -246,8 +254,8 @@ export class GamePage {
 	
 	removePlayer(player) {
 		let alert = this.alertCtrl.create({
-		// title: 'Confirm removing',
-		message: 'Do you want to remove player from this game?',
+		title: 'Confirm removing',
+		message: 'Do you want to remove player ' + player.name + ' from this game?',
 		buttons: [
 		  {
 			text: 'Cancel',
@@ -310,11 +318,12 @@ export class GamePage {
 				this.players[i].bStraight == '' || this.players[i].bStraight == undefined ||
 				this.players[i].fullhouse == '' || this.players[i].fullhouse == undefined ||
 				this.players[i].chance == '' || this.players[i].chance == undefined ||
-				this.players[i].yatzy == '' || this.players[i].yatzy == undefined
-			)
+				this.players[i].yatzy == '' || this.players[i].yatzy == undefined)
 				return false;
 		}
 		
 		return true;
 	}
+	
+	submitForm() {}
 }

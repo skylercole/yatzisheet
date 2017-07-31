@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import { NativeStorage } from '@ionic-native/native-storage';
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class PlayersData {
@@ -63,20 +65,53 @@ export class PlayersData {
 @Injectable()
 export class PlayersBase {
 	
-  public players: Array<{name: string, isInGame}>;
+  public players: Array<{name: string, isInGame: boolean, games: number}>;
   
-  constructor() {
-    this.players = [
-			{name:'Stasho', isInGame: false},
-			{name:'Kati', isInGame: false},
-			{name:'Heli', isInGame: false},
-			{name:'Kari', isInGame: false}
-		];
+  constructor(private nativeStorage: NativeStorage, platform: Platform) {
+	this.players = [];
+	
+	// platform.ready().then(() => {
+		// nativeStorage.getItem('yatzisheet').then(function (json) {
+			// console.log(json);
+			// if (json) {
+				// console.log(json);
+				// this.players = [];// JSON.parse(json);
+			// }
+		// });
+	// });
+    // this.players = [
+			  // {name:'Stasho', isInGame: false, games: 15},
+			  // {name:'Kati', isInGame: false, games: 10},
+			 // {name:'Heli', isInGame: false},
+			 // {name:'Kari', isInGame: false}
+		// ];
+  }
+  
+  load() {
+	  this.nativeStorage.getItem('yatzisheet').then((json) => {
+			if (json) {
+				this.players = JSON.parse(json);
+				
+				for(var index=0; index<this.players.length; index++ ) {
+					this.players[index].isInGame = false;
+				}
+			 }
+			}, err => console.log(err)
+		);
+  }
+  
+  save() {
+	  this.nativeStorage.setItem('yatzisheet', JSON.stringify(this.players)).then(
+			() => console.log('Stored item!'),
+			error => console.error('Error storing item', error)
+		);
   }
   
   addNew(nameToAdd) {
 		if (this.exists(nameToAdd) == -1) {
-			this.players.push({name:nameToAdd, isInGame: true});
+			this.players.push({name:nameToAdd, isInGame: true, games: 0});			
+
+			this.save();
 		}
   }
   
@@ -88,5 +123,21 @@ export class PlayersBase {
 		}
 		
 		return -1;
+  }
+  
+  deletePlayer(name) {
+		var index = this.exists(name);
+		if (index > -1) {
+			this.players.splice(index, 1);
+			
+			this.save();
+		}
+  }
+  
+  renamePlayer(oldName, newName) {
+		var index = this.exists(oldName);
+		this.players[index].name = newName;
+		
+		this.save();
   }
 }

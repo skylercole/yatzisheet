@@ -1,37 +1,83 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { PlayersBase } from '../../app/playersdata';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-players',
   templateUrl: 'players.html'
 })
+
 export class PlayersPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+	playersInBase;
+	playersInBaseClass;
+	newPlayerName: string;
+	isRenaming: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
-  }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(PlayersPage, {
-      item: item
-    });
-  }
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersBase: PlayersBase) {
+		this.playersInBase = playersBase.players;		
+		this.playersInBaseClass = playersBase;	
+		this.isRenaming = '';
+	}	
+	
+	createPlayer() {
+		if (this.newPlayerName == undefined || this.newPlayerName.trim() == '')
+			return;
+		
+		if (this.playersInBaseClass.exists(this.newPlayerName) > -1) {
+			let alert = this.alertCtrl.create({
+				subTitle: 'Player name already exists',
+				buttons: ['Dismiss']
+			  });
+			alert.present();
+			
+			return;
+		}
+		
+		this.playersInBaseClass.addNew(this.newPlayerName);
+		this.newPlayerName = '';
+	}
+	
+	deletePlayer(name) {
+		let alert = this.alertCtrl.create({
+			title: 'Confirm permanent delete',
+			message: 'Do you want to delete player ' + name + ' permanently?',
+			buttons: [
+			  {
+				text: 'Cancel',
+				role: 'cancel',
+				handler: () => { }
+			  },
+			  {
+				text: 'Delete',
+				handler: () => {
+				  this.playersInBaseClass.deletePlayer(name);
+				}
+			  }
+			]
+		  });
+	  alert.present();
+	}
+	
+	renamePlayer(name) {
+		this.isRenaming = name;
+	}
+	
+	onRename(data, name){
+		if (data == undefined || data.trim() == '')
+			return;		
+		
+		if (this.playersInBaseClass.exists(data) > -1) {
+			let alert = this.alertCtrl.create({
+				subTitle: 'Player name already exists',
+				buttons: ['Dismiss']
+			  });
+			alert.present();
+			
+			return;
+		}
+		
+		this.playersInBaseClass.renamePlayer(name, data);
+		this.isRenaming = '';
+	}
 }

@@ -22,6 +22,8 @@ export class PopoverPage {
 		
 		this.playersInBaseClass = playersBase;		
 		this.playersInGameClass = playersData;
+		
+		// this.playersInBaseClass.load();
 	}
 
 	close() {
@@ -33,7 +35,7 @@ export class PopoverPage {
 	}
 
 	createPlayer() {
-		if (this.newPlayerName == undefined || this.newPlayerName == '')
+		if (this.newPlayerName == undefined || this.newPlayerName.trim() == '')
 			return;
 		
 		if (this.playersInBaseClass.exists(this.newPlayerName) > -1) {

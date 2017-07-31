@@ -24,7 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Game', component: GamePage, icon: 'ion-ios-game-controller-b' },
       { title: 'Players', component: PlayersPage, icon: 'ion-ios-person' },
-      { title: 'Statistics', component: StatisticsPage, icon: 'ion-ios-ionic-outline' }
+      { title: 'Statistics', component: StatisticsPage, icon: 'ion-ios-stats' }
     ];
 
   }
