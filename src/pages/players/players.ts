@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PlayersBase } from '../../app/playersdata';
 import { PlayersData } from '../../app/playersdata';
 import { AlertController } from 'ionic-angular';
 
@@ -10,16 +9,14 @@ import { AlertController } from 'ionic-angular';
 })
 
 export class PlayersPage {
-	playersInBase;
-	playersInBaseClass;
-	playersInGameClass;
+	players;
+	playersClass;
 	newPlayerName: string;
 	isRenaming: string;
 
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersBase: PlayersBase, public playersGame: PlayersData) {
-		this.playersInBase = playersBase.players;		
-		this.playersInBaseClass = playersBase;	
-		this.playersInGameClass = playersGame;	
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersGame: PlayersData) {
+		this.players = playersGame.players;		
+		this.playersClass = playersGame;	
 		this.isRenaming = '';
 	}	
 	
@@ -27,7 +24,7 @@ export class PlayersPage {
 		if (this.newPlayerName == undefined || this.newPlayerName.trim() == '')
 			return;
 		
-		if (this.playersInBaseClass.exists(this.newPlayerName) > -1) {
+		if (this.playersClass.exists(this.newPlayerName) > -1) {
 			let alert = this.alertCtrl.create({
 				subTitle: 'Player name already exists',
 				buttons: ['Dismiss']
@@ -37,7 +34,7 @@ export class PlayersPage {
 			return;
 		}
 		
-		this.playersInBaseClass.addNew(this.newPlayerName);
+		this.playersClass.add(this.newPlayerName, false);
 		this.newPlayerName = '';
 	}
 	
@@ -54,7 +51,7 @@ export class PlayersPage {
 			  {
 				text: 'Delete',
 				handler: () => {
-				  this.playersInBaseClass.deletePlayer(name);
+				  this.playersClass.deletePlayer(name);
 				}
 			  }
 			]
@@ -70,7 +67,7 @@ export class PlayersPage {
 		if (data == undefined || data.trim() == '')
 			return;		
 		
-		if (this.playersInBaseClass.exists(data) > -1) {
+		if (this.playersClass.exists(data) > -1) {
 			let alert = this.alertCtrl.create({
 				subTitle: 'Player name already exists',
 				buttons: ['Dismiss']
@@ -80,8 +77,7 @@ export class PlayersPage {
 			return;
 		}
 		
-		this.playersInBaseClass.renamePlayer(name, data);
-		this.playersInGameClass.renamePlayer(name, data);
+		this.playersClass.renamePlayer(name, data);
 		this.isRenaming = '';
 	}
 }

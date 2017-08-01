@@ -12,9 +12,10 @@ import { PopoverEndGamePage } from '../pages/popoverendgame/popoverendgame';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {PlayersData} from './playersdata';
-import {PlayersBase} from './playersdata';
+import { PlayersData} from './playersdata';
 import { NativeStorage } from '@ionic-native/native-storage';
+// import { IsInGameFilterPipe } from '../pipes/is-in-game-filter/is-in-game-filter';
+import { MyFilterPipe } from '../pipes/my-filter';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
     PlayersPage,
     StatisticsPage	,
 	PopoverPage,
-	PopoverEndGamePage
+	PopoverEndGamePage,
+	MyFilterPipe
+    // IsInGameFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-	PlayersData, PlayersBase,
+	PlayersData,
 	NativeStorage
   ]
 })

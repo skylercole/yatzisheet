@@ -23,7 +23,7 @@
 			<ion-col col-1>
 			</ion-col>
 		</ion-row>
-		<ion-row *ngFor="let x of playersInBase">
+		<ion-row *ngFor="let x of players">
 			<ion-col col-6 *ngIf="isRenaming != x.name">
 				<ion-item text-center style="font-weight: bold;">
 					{{x.name}}

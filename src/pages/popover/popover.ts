@@ -1,6 +1,5 @@
 import { ViewController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { PlayersBase } from '../../app/playersdata';
 import { PlayersData } from '../../app/playersdata';
 import { AlertController } from 'ionic-angular';
 
@@ -9,21 +8,14 @@ import { AlertController } from 'ionic-angular';
 })
 
 export class PopoverPage {
-	playersInGame;
-	playersInGameClass;
-	playersInBase;
-	playersInBaseClass;
+	players;
+	playersClass;
 	
 	newPlayerName: string;
 	
-	constructor(public viewCtrl: ViewController, private alertCtrl: AlertController, public playersBase: PlayersBase, public playersData: PlayersData) {
-		this.playersInBase = playersBase.players;
-		this.playersInGame = playersData.players;
-		
-		this.playersInBaseClass = playersBase;		
-		this.playersInGameClass = playersData;
-		
-		// this.playersInBaseClass.load();
+	constructor(public viewCtrl: ViewController, private alertCtrl: AlertController, public playersData: PlayersData) {
+		this.players = playersData.players;
+		this.playersClass = playersData;		
 	}
 
 	close() {
@@ -31,14 +23,15 @@ export class PopoverPage {
 	}
 	
 	toGame(name, isInGame) {
-		this.playersInGameClass.addNew(name, isInGame);
+		var index = this.playersClass.exists(name);
+		this.players[index].isInGame = isInGame;
 	}
 
 	createPlayer() {
 		if (this.newPlayerName == undefined || this.newPlayerName.trim() == '')
 			return;
 		
-		if (this.playersInBaseClass.exists(this.newPlayerName) > -1) {
+		if (this.playersClass.exists(this.newPlayerName) > -1) {
 			let alert = this.alertCtrl.create({
 				subTitle: 'Player name already exists',
 				buttons: ['Dismiss']
@@ -48,9 +41,15 @@ export class PopoverPage {
 			return;
 		}
 		
-		this.playersInBaseClass.addNew(this.newPlayerName);
-		this.playersInGameClass.addNew(this.newPlayerName, true);
+		this.playersClass.add(this.newPlayerName, true);
 		
 		this.newPlayerName = '';
 	}
+	
+	reorderPlayers(indexes) {
+		let element = this.players[indexes.from];
+		this.players.splice(indexes.from, 1);
+		this.players.splice(indexes.to, 0, element);
+		this.playersClass.save();
+	  }
 }

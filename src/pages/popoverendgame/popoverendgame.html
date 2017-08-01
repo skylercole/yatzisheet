@@ -1,14 +1,4 @@
 <ion-content>
-	<!-- <ion-list> -->
-      <!-- <ion-list-header>Game results</ion-list-header> -->
-	  <!-- <ion-item *ngFor="let x of playersInGame"> -->
-		<!-- <ion-label>{{x.name}}</ion-label> -->
-		<!-- <ion-label>{{x.Total}}</ion-label> -->
-	  <!-- </ion-item> -->
-	  
-	  
-    <!-- </ion-list>	 -->
-	
 	<ion-grid>
 		<ion-row>
 			<ion-col>
@@ -22,7 +12,7 @@
 				</ion-item>
 			</ion-col>
 		</ion-row>
-		<ion-row *ngFor="let x of playersInGame">
+		<ion-row *ngFor="let x of players">
 			<ion-col>
 				<ion-item text-center style="font-weight: bold;">
 					{{x.name}}

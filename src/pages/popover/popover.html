@@ -7,9 +7,11 @@
 			Create
 		</button>
 	  </ion-item>
-	  <ion-item *ngFor="let x of playersInBase">
-		<ion-checkbox [(ngModel)]="x.isInGame" (click)='toGame(x.name, x.isInGame)'></ion-checkbox>
-		<ion-label>{{x.name}}</ion-label>
-	  </ion-item>
+	  <ion-item-group reorder="true" (ionItemReorder)="reorderPlayers($event)">
+		  <ion-item *ngFor="let x of players">
+			<ion-checkbox [(ngModel)]="x.isInGame" (click)='toGame(x.name, x.isInGame)'></ion-checkbox>
+			<ion-label>{{x.name}}</ion-label>
+		  </ion-item>
+	  </ion-item-group>
     </ion-list>
 </ion-content>
