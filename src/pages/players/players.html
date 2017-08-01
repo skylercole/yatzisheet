@@ -8,36 +8,36 @@
 </ion-header>
 
 <ion-content>
-	<ion-grid>
+	<ion-grid no-padding nowrap>
 		<ion-row>
-			<ion-col col-6>
+			<ion-col >
 				<ion-item no-lines text-center>
 					Name
 				</ion-item>
 			</ion-col>
-			<ion-col col-3>
+			<ion-col >
 				<ion-item no-lines text-center>
-					Games played
+					Games
 				</ion-item>
 			</ion-col>
-			<ion-col col-1>
+			<ion-col >
 			</ion-col>
 		</ion-row>
 		<ion-row *ngFor="let x of players">
-			<ion-col col-6 *ngIf="isRenaming != x.name">
+			<ion-col  *ngIf="isRenaming != x.name">
 				<ion-item text-center style="font-weight: bold;">
 					{{x.name}}
 				</ion-item>
 			</ion-col>
-			<ion-col col-6 *ngIf="isRenaming == x.name">
+			<ion-col  *ngIf="isRenaming == x.name">
 				<ion-input text-center type="text" placeholder="Rename player {{x.name}}" maxlength="20" (change)='onRename($event.target.value, x.name)'></ion-input>
 			</ion-col>
-			<ion-col col-3>
+			<ion-col >
 				<ion-item text-center style="font-weight: bold;">
 					{{x.games}}
 				</ion-item>
 			</ion-col>
-			<ion-col col-2>
+			<ion-col >
 				<ion-item text-center no-lines>
 					<button ion-button clear (click)='renamePlayer(x.name)'>
 						<ion-icon name="create" style="font-size: 25px;"></ion-icon>
@@ -49,12 +49,12 @@
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-6>
+			<ion-col >
 				<ion-item>
 					<ion-input text-center type="text" placeholder="New player name" maxlength="20" [(ngModel)]="newPlayerName"></ion-input>		
 				</ion-item>
 			</ion-col>
-			<ion-col col-3>
+			<ion-col >
 				<ion-item no-lines text-center>		
 					<button ion-button item-center (click)='createPlayer()'>
 						Create

@@ -5,7 +5,9 @@ import {Platform} from 'ionic-angular';
 @Injectable()
 export class PlayersData {
 	
-  public players: Array<{name: string, isInGame: boolean, games: number, upperTotal: number, total: number,
+  public players: Array<{name: string, 
+		upstairs: number, yatzi: number, points: number,
+		isInGame: boolean, games: number, upperTotal: number, total: number,
 		ones: string, twos: string, threes: string, fours: string, fives: string, sixes: string,
 		pair: string, twopair: string, threesome: string, foursome: string, sStraight: string, bStraight: string, fullhouse: string, chance: string, yatzy:string }>;
   
@@ -15,9 +17,11 @@ export class PlayersData {
   
   add(name, isInGame) {
 	  if (this.exists(name) == -1) {
-			this.players.push({name:name, isInGame: isInGame, games: 0, upperTotal: 0, total: 0, 
-			ones:undefined, twos: undefined, threes: undefined, fours: undefined, fives: undefined, sixes: undefined,
-			pair: undefined, twopair: undefined, threesome: undefined, foursome: undefined, sStraight: undefined, bStraight: undefined, fullhouse: undefined, chance: undefined, yatzy:undefined});			
+			this.players.push({name:name, 
+				upstairs: 0, yatzi: 0, points: 0,
+				isInGame: isInGame, games: 0, upperTotal: 0, total: 0, 
+				ones:undefined, twos: undefined, threes: undefined, fours: undefined, fives: undefined, sixes: undefined,
+				pair: undefined, twopair: undefined, threesome: undefined, foursome: undefined, sStraight: undefined, bStraight: undefined, fullhouse: undefined, chance: undefined, yatzy:undefined});			
 			this.save();
 		}
   }
