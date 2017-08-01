@@ -5,6 +5,7 @@ import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../../pages/popover/popover';
 import { PopoverEndGamePage } from '../../pages/popoverendgame/popoverendgame';
 import { AlertController } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-game',
@@ -15,7 +16,8 @@ export class GamePage {
 	players;
 	playersClass;
 	
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController) {		
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController,
+		private keyboard: Keyboard) {		
 		if (playersData.players.length == 0)
 			this.playersData.load();
 		
@@ -321,5 +323,9 @@ export class GamePage {
 		}
 		
 		return true;
+	}
+	
+	handleEnter() {
+		this.keyboard.close();
 	}
 }

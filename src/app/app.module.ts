@@ -14,8 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { PlayersData} from './playersdata';
 import { NativeStorage } from '@ionic-native/native-storage';
-// import { IsInGameFilterPipe } from '../pipes/is-in-game-filter/is-in-game-filter';
-import { MyFilterPipe } from '../pipes/my-filter';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,6 @@ import { MyFilterPipe } from '../pipes/my-filter';
     StatisticsPage	,
 	PopoverPage,
 	PopoverEndGamePage,
-	MyFilterPipe
-    // IsInGameFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -46,7 +43,8 @@ import { MyFilterPipe } from '../pipes/my-filter';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 	PlayersData,
-	NativeStorage
+	NativeStorage,
+	Keyboard
   ]
 })
 export class AppModule {}

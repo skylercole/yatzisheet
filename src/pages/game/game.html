@@ -43,7 +43,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Ones" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "ones")' [(ngModel)]="x.ones" 
-					[attr.id]="x.name+'[ones]'"></ion-input>
+						[attr.id]="x.name+'[ones]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -55,7 +55,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Twos" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "twos")' [(ngModel)]="x.twos" 
-					[attr.id]="x.name+'[twos]'"></ion-input>
+					[attr.id]="x.name+'[twos]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -67,7 +67,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Threes" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "threes")' [(ngModel)]="x.threes" 
-					[attr.id]="x.name+'[threes]'"></ion-input>
+					[attr.id]="x.name+'[threes]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -79,7 +79,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Fours" minlength="1" maxlength="2" (change)='onChangeUpperSide($event.target.value, x, "fours")' [(ngModel)]="x.fours" 
-					[attr.id]="x.name+'[fours]'"></ion-input>
+					[attr.id]="x.name+'[fours]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -91,7 +91,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Fives" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "fives")' [(ngModel)]="x.fives" 
-					[attr.id]="x.name+'[fives]'"></ion-input>
+					[attr.id]="x.name+'[fives]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -103,7 +103,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Sixes" minlength="1" maxlength="3" (change)='onChangeUpperSide($event.target.value, x, "sixes")' [(ngModel)]="x.sixes" 
-					[attr.id]="x.name+'[sixes]'"></ion-input>
+					[attr.id]="x.name+'[sixes]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -126,7 +126,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Pair" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "pair")' [(ngModel)]="x.pair" 
-					[attr.id]="x.name+'[pair]'"></ion-input>
+					[attr.id]="x.name+'[pair]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -138,7 +138,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Two pairs" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "twopair")' [(ngModel)]="x.twopair" 
-					[attr.id]="x.name+'[twopair]'"></ion-input>
+					[attr.id]="x.name+'[twopair]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -149,7 +149,7 @@
 					<img src="img/threesome.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
-					<ion-input text-center type="text" placeholder="Three of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "threesome")' [(ngModel)]="x.threesome" [attr.id]="x.name+'[threesome]'"></ion-input>
+					<ion-input text-center type="text" placeholder="Three of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "threesome")' [(ngModel)]="x.threesome" [attr.id]="x.name+'[threesome]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -160,7 +160,7 @@
 					<img src="img/foursome.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
-					<ion-input text-center type="text" placeholder="Four of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "foursome")' [(ngModel)]="x.foursome" [attr.id]="x.name+'[foursome]'"></ion-input>
+					<ion-input text-center type="text" placeholder="Four of a kind" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "foursome")' [(ngModel)]="x.foursome" [attr.id]="x.name+'[foursome]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -171,7 +171,7 @@
 					<img src="img/smallstraight.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
-					<ion-input text-center type="text" placeholder="Small straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "sStraight")' [(ngModel)]="x.sStraight" [attr.id]="x.name+'[sStraight]'"></ion-input>
+					<ion-input text-center type="text" placeholder="Small straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "sStraight")' [(ngModel)]="x.sStraight" [attr.id]="x.name+'[sStraight]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -182,7 +182,7 @@
 					<img src="img/bigstraight.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
-					<ion-input text-center type="text" placeholder="Big straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "bStraight")' [(ngModel)]="x.bStraight" [attr.id]="x.name+'[bStraight]'"></ion-input>
+					<ion-input text-center type="text" placeholder="Big straight" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "bStraight")' [(ngModel)]="x.bStraight" [attr.id]="x.name+'[bStraight]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -193,8 +193,7 @@
 					<img src="img/fullhouse.png"/>
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
-					<ion-input text-center type="text" placeholder="Full house" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "fullhouse")' [(ngModel)]="x.fullhouse" 
-					[attr.id]="x.name+'[fullhouse]'"></ion-input>
+					<ion-input text-center type="text" placeholder="Full house" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "fullhouse")' [(ngModel)]="x.fullhouse" [attr.id]="x.name+'[fullhouse]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -206,7 +205,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Chance" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "chance")' [(ngModel)]="x.chance" 
-					[attr.id]="x.name+'[chance]'"></ion-input>
+					[attr.id]="x.name+'[chance]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
@@ -218,7 +217,7 @@
 				</ion-col>
 				<ion-col *ngFor="let x of playersClass.areInGame()">
 					<ion-input text-center type="text" placeholder="Yatzy" minlength="1" maxlength="2" (change)='onChangeLowerSide($event.target.value, x, "yatzy")' [(ngModel)]="x.yatzy" 
-					[attr.id]="x.name+'[yatzy]'"></ion-input>
+					[attr.id]="x.name+'[yatzy]'" (keyup.enter)='handleEnter()'></ion-input>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>
