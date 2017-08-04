@@ -1,3 +1,9 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Game finished</ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content>
 	<ion-grid>
 		<ion-row>
@@ -12,7 +18,7 @@
 				</ion-item>
 			</ion-col>
 		</ion-row>
-		<ion-row *ngFor="let x of players">
+		<ion-row *ngFor="let x of playersClass.endGameResults()">
 			<ion-col>
 				<ion-item text-center style="font-weight: bold;">
 					{{x.name}}

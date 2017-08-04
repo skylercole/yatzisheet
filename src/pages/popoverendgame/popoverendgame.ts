@@ -7,10 +7,10 @@ import { PlayersData } from '../../app/playersdata';
 })
 
 export class PopoverEndGamePage {
-	players;
+	playersClass;
 	
 	constructor(public viewCtrl: ViewController, public playersData: PlayersData) {
-		this.players = playersData.players.filter(item => item.isInGame);
+		this.playersClass = playersData;
 	}
 
 	close() {

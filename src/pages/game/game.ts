@@ -236,6 +236,9 @@ export class GamePage {
 	}
 	
 	calcUpperValue(val){
+		if (this.include(['-'], val))
+			return undefined;
+		
 		if (this.include(['X','x', undefined], val))
 				return 0;
 		
@@ -245,17 +248,17 @@ export class GamePage {
 	getUpperValidationArray(elementName){
 		switch(elementName){
 			case 'ones': 				
-				return ['X','x','-1','+1','1','-2','+2','2','0'];
+				return ['-','X','x','-1','+1','1','-2','+2','2','0'];
 			case 'twos': 
-				return ['X','x','-2','+2','2','-4','+4','4','0'];
+				return ['-','X','x','-2','+2','2','-4','+4','4','0'];
 			case 'threes': 
-				return ['X','x','-3','+3','3','-6','+6','6','0'];
+				return ['-','X','x','-3','+3','3','-6','+6','6','0'];
 			case 'fours': 
-				return ['X','x','-4','+4','4','-8','+8','8','0'];
+				return ['-','X','x','-4','+4','4','-8','+8','8','0'];
 			case 'fives': 
-				return ['X','x','-5','+5','5','-10','+10','10','0'];
+				return ['-','X','x','-5','+5','5','-10','+10','10','0'];
 			case 'sixes': 
-				return ['X','x','-6','+6','6','-12','+12','12','0'];
+				return ['-','X','x','-6','+6','6','-12','+12','12','0'];
 		}
 	}
 	

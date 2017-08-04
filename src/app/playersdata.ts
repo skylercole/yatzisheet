@@ -48,6 +48,22 @@ export class PlayersData {
 	  return group;
   }
   
+  endGameResults() {
+	  var group = [];
+	  
+	  for (var index=0; index<this.players.length; index++ ) {
+		  if (this.players[index].isInGame) {
+			  group.push(this.players[index]);
+		  }
+	  }
+	  
+	  group.sort(function(a, b) {
+			return parseFloat(b.total) - parseFloat(a.total);
+		});
+	  
+	  return group;
+  }
+  
   resetGameStats() {
 	  for (var index=0; index<this.players.length; index++ ) {
 		  if (this.players[index].isInGame) {
