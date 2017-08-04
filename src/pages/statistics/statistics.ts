@@ -33,11 +33,6 @@ export class StatisticsPage {
 				this.stats1.push({name:this.players[i].name,result:this.players[i].yatzis/this.players[i].games, color: color});
 				this.stats2.push({name:this.players[i].name,result:this.players[i].upstairs/this.players[i].games, color: color});				
 			}
-			else {// push fake data
-				var color2 = this.getRandomColor();
-				this.stats1.push({name:this.players[i].name,result:1, color: color2});
-				this.stats2.push({name:this.players[i].name,result:i, color: color2});	
-			}
 		}
 	}
 	
