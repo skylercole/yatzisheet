@@ -37,7 +37,7 @@ export class StatisticsPage {
 	}
 	
 	ionViewDidLoad() {
-		if (this.players.length > 0) {
+		if (this.stats1.length > 0) {
 			this.yatziChart = new Chart(this.yatziCanvas.nativeElement, {
 				type: 'doughnut',
 				data: {

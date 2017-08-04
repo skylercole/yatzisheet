@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-	<div *ngIf="players.length == 0">
+	<div *ngIf="stats1.length == 0">
         Play at least one game for statistics to generate
     </div>
   
-  <ion-card *ngIf="players.length > 0">
+  <ion-card *ngIf="stats1.length > 0">
       <ion-card-header>
         Yatzi success ratio
       </ion-card-header>
@@ -21,7 +21,7 @@
       </ion-card-content>
     </ion-card>
  
-    <ion-card *ngIf="players.length > 0">
+    <ion-card *ngIf="stats1.length > 0">
       <ion-card-header>
         Upper results sucess ratio
       </ion-card-header>
