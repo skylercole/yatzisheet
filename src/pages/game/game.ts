@@ -13,7 +13,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 })
 
 export class GamePage {
-	players;
 	playersClass;
 	
 	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController,
@@ -23,7 +22,6 @@ export class GamePage {
 		if (playersData.players.length == 0)
 			this.playersData.load();
 		
-		this.players = playersData.players;
 		this.playersClass = playersData;
 	}
 	
@@ -78,28 +76,28 @@ export class GamePage {
 		var index = this.playersClass.exists(player.name);
 		
 		if (data != undefined) {			
-			if (this.players[index].ones != undefined && 
-				this.players[index].twos != undefined &&
-				this.players[index].threes != undefined &&
-				this.players[index].fours != undefined &&
-				this.players[index].fives != undefined &&
-				this.players[index].sixes != undefined) {
+			if (this.playersClass.players[index].ones != undefined && 
+				this.playersClass.players[index].twos != undefined &&
+				this.playersClass.players[index].threes != undefined &&
+				this.playersClass.players[index].fours != undefined &&
+				this.playersClass.players[index].fives != undefined &&
+				this.playersClass.players[index].sixes != undefined) {
 					
 					var val = this.calcUpper(index);					
 					
 					if (val >= 0) {
-						this.players[index].upperTotal = val + 50;
+						this.playersClass.players[index].upperTotal = val + 50;
 					}
 					else {
-						this.players[index].upperTotal = 0;
+						this.playersClass.players[index].upperTotal = 0;
 					}
 			}			
 		}
 		else {
-				this.players[index].upperTotal = 0;
+				this.playersClass.players[index].upperTotal = 0;
 		}
 		
-		this.players[index].total = this.calcLower(index) + this.players[index].upperTotal;
+		this.playersClass.players[index].total = this.calcLower(index) + this.playersClass.players[index].upperTotal;
 		
 		if (this.isGameCompleted())
 			this.showCompleted();
@@ -160,7 +158,7 @@ export class GamePage {
 		}		
 		
 		var index = this.playersClass.exists(player.name);
-		this.players[index].total = this.calcLower(index) + this.players[index].upperTotal;
+		this.playersClass.players[index].total = this.calcLower(index) + this.playersClass.players[index].upperTotal;
 		
 		if (this.isGameCompleted())
 			this.showCompleted();
@@ -174,23 +172,23 @@ export class GamePage {
 	}
 	
 	updateGameStats() {
-		for(var i=0;i<this.players.length;i++) {
-			if (this.players[i].isInGame) {
-				this.players[i].games++;
+		for(var i=0;i<this.playersClass.players.length;i++) {
+			if (this.playersClass.players[i].isInGame) {
+				this.playersClass.players[i].games++;
 				
-				if (this.players[i].upperTotal > 0)
-					this.players[i].upstairs++;
+				if (this.playersClass.players[i].upperTotal > 0)
+					this.playersClass.players[i].upstairs++;
 				
-				if (this.players[i].yatzy > 0)
-					this.players[i].yatzis++;
+				if (this.playersClass.players[i].yatzy > 0)
+					this.playersClass.players[i].yatzis++;
 				
-				this.players[i].avgPoints = Math.round((this.players[i].avgPoints + this.players[i].total) / this.players[i].games);
+				this.playersClass.players[i].avgPoints = Math.round((this.playersClass.players[i].avgPoints + this.playersClass.players[i].total) / this.playersClass.players[i].games);
 				
-				if (this.players[i].total > this.players[i].bestResult)
-					this.players[i].bestResult = this.players[i].total;
+				if (this.playersClass.players[i].total > this.playersClass.players[i].bestResult)
+					this.playersClass.players[i].bestResult = this.playersClass.players[i].total;
 				
-				if (this.players[i].total < this.players[i].worstResult || this.players[i].worstResult == 0)
-					this.players[i].worstResult = this.players[i].total;
+				if (this.playersClass.players[i].total < this.playersClass.players[i].worstResult || this.playersClass.players[i].worstResult == 0)
+					this.playersClass.players[i].worstResult = this.playersClass.players[i].total;
 			}				
 		}
 	}
@@ -202,19 +200,19 @@ export class GamePage {
 	}
 	
 	calcLower(index) {
-		return this.calcLowerValue(this.players[index].pair) +
-			this.calcLowerValue(this.players[index].twopair) +
-			this.calcLowerValue(this.players[index].threesome) +
-			this.calcLowerValue(this.players[index].foursome) +
-			this.calcLowerValue(this.players[index].sStraight, "sStraight") +
-			this.calcLowerValue(this.players[index].bStraight, "bStraight") +
-			this.calcLowerValue(this.players[index].fullhouse) +
-			this.calcLowerValue(this.players[index].chance) + 
-			this.calcLowerValue(this.players[index].yatzy);
+		return this.calcLowerValue(this.playersClass.players[index].pair) +
+			this.calcLowerValue(this.playersClass.players[index].twopair) +
+			this.calcLowerValue(this.playersClass.players[index].threesome) +
+			this.calcLowerValue(this.playersClass.players[index].foursome) +
+			this.calcLowerValue(this.playersClass.players[index].sStraight, "sStraight") +
+			this.calcLowerValue(this.playersClass.players[index].bStraight, "bStraight") +
+			this.calcLowerValue(this.playersClass.players[index].fullhouse) +
+			this.calcLowerValue(this.playersClass.players[index].chance) + 
+			this.calcLowerValue(this.playersClass.players[index].yatzy);
 	}
 	
 	calcLowerValue(val, straightType: string = ""){
-		if (this.include(['-', undefined], val))
+		if (this.include(['-', '', undefined], val))
 			return 0;
 			
 		if (this.include(['X','x'], val) && straightType == "sStraight")
@@ -227,16 +225,16 @@ export class GamePage {
 	}
 	
 	calcUpper(index) {
-		return this.calcUpperValue(this.players[index].ones) +
-			this.calcUpperValue(this.players[index].twos) +
-			this.calcUpperValue(this.players[index].threes) +
-			this.calcUpperValue(this.players[index].fours) +
-			this.calcUpperValue(this.players[index].fives) +
-			this.calcUpperValue(this.players[index].sixes);
+		return this.calcUpperValue(this.playersClass.players[index].ones) +
+			this.calcUpperValue(this.playersClass.players[index].twos) +
+			this.calcUpperValue(this.playersClass.players[index].threes) +
+			this.calcUpperValue(this.playersClass.players[index].fours) +
+			this.calcUpperValue(this.playersClass.players[index].fives) +
+			this.calcUpperValue(this.playersClass.players[index].sixes);
 	}
 	
 	calcUpperValue(val){
-		if (this.include(['-'], val))
+		if (this.include(['-', ''], val))
 			return undefined;
 		
 		if (this.include(['X','x', undefined], val))
@@ -331,23 +329,23 @@ export class GamePage {
 	}
 	
 	isGameCompleted() {
-		for(var i=0; i< this.players.length; i++) {
-			if (this.players[i].isInGame)
-				if (this.players[i].ones == '' || this.players[i].ones == undefined ||
-					this.players[i].twos == '' || this.players[i].twos == undefined ||
-					this.players[i].threes == '' || this.players[i].threes == undefined ||
-					this.players[i].fours == '' || this.players[i].fours == undefined ||
-					this.players[i].fives == '' || this.players[i].fives == undefined ||
-					this.players[i].sixes == '' || this.players[i].sixes == undefined ||
-					this.players[i].pair == '' || this.players[i].pair == undefined ||
-					this.players[i].twopair == '' || this.players[i].twopair == undefined ||
-					this.players[i].threesome == '' || this.players[i].threesome == undefined ||
-					this.players[i].foursome == '' || this.players[i].foursome == undefined ||
-					this.players[i].sStraight == '' || this.players[i].sStraight == undefined ||
-					this.players[i].bStraight == '' || this.players[i].bStraight == undefined ||
-					this.players[i].fullhouse == '' || this.players[i].fullhouse == undefined ||
-					this.players[i].chance == '' || this.players[i].chance == undefined ||
-					this.players[i].yatzy == '' || this.players[i].yatzy == undefined)
+		for(var i=0; i< this.playersClass.players.length; i++) {
+			if (this.playersClass.players[i].isInGame)
+				if (this.playersClass.players[i].ones == '' || this.playersClass.playersClass.players[i].ones == undefined ||
+					this.playersClass.players[i].twos == '' || this.playersClass.players[i].twos == undefined ||
+					this.playersClass.players[i].threes == '' || this.playersClass.players[i].threes == undefined ||
+					this.playersClass.players[i].fours == '' || this.playersClass.players[i].fours == undefined ||
+					this.playersClass.players[i].fives == '' || this.playersClass.players[i].fives == undefined ||
+					this.playersClass.players[i].sixes == '' || this.playersClass.players[i].sixes == undefined ||
+					this.playersClass.players[i].pair == '' || this.playersClass.players[i].pair == undefined ||
+					this.playersClass.players[i].twopair == '' || this.playersClass.players[i].twopair == undefined ||
+					this.playersClass.players[i].threesome == '' || this.playersClass.players[i].threesome == undefined ||
+					this.playersClass.players[i].foursome == '' || this.playersClass.players[i].foursome == undefined ||
+					this.playersClass.players[i].sStraight == '' || this.playersClass.players[i].sStraight == undefined ||
+					this.playersClass.players[i].bStraight == '' || this.playersClass.players[i].bStraight == undefined ||
+					this.playersClass.players[i].fullhouse == '' || this.playersClass.players[i].fullhouse == undefined ||
+					this.playersClass.players[i].chance == '' || this.playersClass.players[i].chance == undefined ||
+					this.playersClass.players[i].yatzy == '' || this.playersClass.players[i].yatzy == undefined)
 					return false;
 		}
 		
