@@ -3,16 +3,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Statistics</ion-title>
+    <ion-title><ion-icon name="stats" item-left></ion-icon>&nbsp;&nbsp;&nbsp;Statistics</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+	<div *ngIf="players.length == 0">
+        Play at least one game for statistics to generate
+    </div>
+  
+  <ion-card *ngIf="players.length > 0">
+      <ion-card-header>
+        Yatzi success ratio
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #YatziCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+ 
+    <ion-card *ngIf="players.length > 0">
+      <ion-card-header>
+        Upper results sucess ratio
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #UpstairsCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+  
 </ion-content>

@@ -7,38 +7,37 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding>
 	<ion-grid no-padding nowrap>
-		<ion-row>
-			<ion-col >
+		<ion-row responsive-sm nowrap>
+			<ion-col>
 				<ion-item no-lines text-center>
 					Name
 				</ion-item>
 			</ion-col>
-			<ion-col >
-				<ion-item no-lines text-center>
+			<ion-col>
+				<ion-item no-lines text-center nowrap>
 					Games
 				</ion-item>
+				<ion-item no-lines text-center nowrap>
+					Average
+				</ion-item>
 			</ion-col>
-			<ion-col >
+			<ion-col>
+				<ion-item no-lines text-center nowrap>
+					Best
+				</ion-item>
+				<ion-item no-lines text-center nowrap>
+					Worst
+				</ion-item>
 			</ion-col>
 		</ion-row>
-		<ion-row *ngFor="let x of players">
-			<ion-col  *ngIf="isRenaming != x.name">
+		<ion-row *ngFor="let x of players" responsive-sm nowrap style="border: thin solid lightgray;">
+			<ion-col *ngIf="isRenaming != x.name">
 				<ion-item text-center style="font-weight: bold;">
 					{{x.name}}
 				</ion-item>
-			</ion-col>
-			<ion-col  *ngIf="isRenaming == x.name">
-				<ion-input text-center type="text" placeholder="Rename player {{x.name}}" maxlength="20" (change)='onRename($event.target.value, x.name)'></ion-input>
-			</ion-col>
-			<ion-col >
-				<ion-item text-center style="font-weight: bold;">
-					{{x.games}}
-				</ion-item>
-			</ion-col>
-			<ion-col >
-				<ion-item text-center no-lines>
+				<ion-item no-lines text-center>
 					<button ion-button clear (click)='renamePlayer(x.name)'>
 						<ion-icon name="create" style="font-size: 25px;"></ion-icon>
 					</button>
@@ -47,14 +46,33 @@
 					</button>					
 				</ion-item>
 			</ion-col>
+			<ion-col *ngIf="isRenaming == x.name" >
+				<ion-input text-center type="text" [(ngModel)]="copyName" placeholder="Rename player {{x.name}}" maxlength="20" (change)='onRename($event.target.value, x.name)'></ion-input>
+			</ion-col>
+			<ion-col>
+				<ion-item no-lines text-center>
+					{{x.games}}
+				</ion-item>
+				<ion-item no-lines text-center>
+					{{x.avgPoints}}
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-item no-lines text-center>
+					{{x.bestResult}}
+				</ion-item>
+				<ion-item no-lines text-center>
+					{{x.worstResult}}
+				</ion-item>
+			</ion-col>
 		</ion-row>
-		<ion-row>
-			<ion-col >
+		<ion-row responsive-sm wrap>
+			<ion-col>
 				<ion-item>
 					<ion-input text-center type="text" placeholder="New player name" maxlength="20" [(ngModel)]="newPlayerName"></ion-input>		
 				</ion-item>
 			</ion-col>
-			<ion-col >
+			<ion-col>
 				<ion-item no-lines text-center>		
 					<button ion-button item-center (click)='createPlayer()'>
 						Create

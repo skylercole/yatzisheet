@@ -17,7 +17,9 @@ export class GamePage {
 	playersClass;
 	
 	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController,
-		private keyboard: Keyboard) {		
+		private keyboard: Keyboard) {
+			
+		// Attempt to load data if players array is empty.
 		if (playersData.players.length == 0)
 			this.playersData.load();
 		
@@ -167,6 +169,30 @@ export class GamePage {
 	showCompleted() {
 		let popover = this.popoverCtrl.create(PopoverEndGamePage);
 		popover.present();
+		this.updateGameStats();
+		this.playersClass.save();
+	}
+	
+	updateGameStats() {
+		for(var i=0;i<this.players.length;i++) {
+			if (this.players[i].isInGame) {
+				this.players[i].games++;
+				
+				if (this.players[i].upperTotal > 0)
+					this.players[i].upstairs++;
+				
+				if (this.players[i].yatzy > 0)
+					this.players[i].yatzis++;
+				
+				this.players[i].avgPoints = Math.round((this.players[i].avgPoints + this.players[i].total) / this.players[i].games);
+				
+				if (this.players[i].total > this.players[i].bestResult)
+					this.players[i].bestResult = this.players[i].total;
+				
+				if (this.players[i].total < this.players[i].worstResult || this.players[i].worstResult == 0)
+					this.players[i].worstResult = this.players[i].total;
+			}				
+		}
 	}
 	
 	include(arr, obj) {
@@ -256,7 +282,7 @@ export class GamePage {
 		}
 	}
 	
-	removePlayer(player) {
+	/* removePlayer(player) {
 		let alert = this.alertCtrl.create({
 		title: 'Confirm removing',
 		message: 'Do you want to remove player ' + player.name + ' from this game?',
@@ -278,7 +304,7 @@ export class GamePage {
 		]
 	  });
 	  alert.present();
-	}
+	} */
 	
 	resetValues() {
 		let alert = this.alertCtrl.create({

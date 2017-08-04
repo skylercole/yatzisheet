@@ -13,8 +13,13 @@ export class PlayersPage {
 	playersClass;
 	newPlayerName: string;
 	isRenaming: string;
+	copyName: string;
 
 	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersGame: PlayersData) {
+		// Attempt to load data if players array is empty.
+		if (playersGame.players.length == 0)
+			playersGame.load();
+		
 		this.players = playersGame.players;		
 		this.playersClass = playersGame;	
 		this.isRenaming = '';
@@ -60,7 +65,7 @@ export class PlayersPage {
 	}
 	
 	renamePlayer(name) {
-		this.isRenaming = name;
+		this.copyName = this.isRenaming = name;
 	}
 	
 	onRename(data, name){
