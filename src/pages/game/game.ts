@@ -331,7 +331,7 @@ export class GamePage {
 	isGameCompleted() {
 		for(var i=0; i< this.playersClass.players.length; i++) {
 			if (this.playersClass.players[i].isInGame)
-				if (this.playersClass.players[i].ones == '' || this.playersClass.playersClass.players[i].ones == undefined ||
+				if (this.playersClass.players[i].ones == '' || this.playersClass.players[i].ones == undefined ||
 					this.playersClass.players[i].twos == '' || this.playersClass.players[i].twos == undefined ||
 					this.playersClass.players[i].threes == '' || this.playersClass.players[i].threes == undefined ||
 					this.playersClass.players[i].fours == '' || this.playersClass.players[i].fours == undefined ||
