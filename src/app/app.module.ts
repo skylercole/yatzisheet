@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { GamePage } from '../pages/game/game';
 import { PlayersPage } from '../pages/players/players';
 import { StatisticsPage } from '../pages/statistics/statistics';
+import { SettingsPage } from '../pages/settings/settings';
 import { PopoverPage } from '../pages/popover/popover';
 import { PopoverEndGamePage } from '../pages/popoverendgame/popoverendgame';
 
@@ -13,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { PlayersData} from './playersdata';
+import { SettingsData} from './settingsdata';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -21,7 +23,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     MyApp,
     GamePage,
     PlayersPage,
-    StatisticsPage	,
+    StatisticsPage,
+    SettingsPage,
 	PopoverPage,
 	PopoverEndGamePage,
   ],
@@ -35,6 +38,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     GamePage,
     PlayersPage,
     StatisticsPage,
+    SettingsPage,
 	PopoverPage,
 	PopoverEndGamePage
   ],
@@ -43,6 +47,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 	PlayersData,
+	SettingsData,
 	NativeStorage,
 	Keyboard
   ]

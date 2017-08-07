@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GamePage } from '../pages/game/game';
 import { PlayersPage } from '../pages/players/players';
 import { StatisticsPage } from '../pages/statistics/statistics';
+import { SettingsPage } from '../pages/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +25,8 @@ export class MyApp {
     this.pages = [
       { title: 'Game', component: GamePage, icon: 'ion-ios-game-controller-b' },
       { title: 'Players', component: PlayersPage, icon: 'ion-ios-person' },
-      { title: 'Statistics', component: StatisticsPage, icon: 'ion-ios-stats' }
+      { title: 'Statistics', component: StatisticsPage, icon: 'ion-ios-stats' },
+      { title: 'Settings', component: SettingsPage, icon: 'ion-ios-settings' }
     ];
 
   }
