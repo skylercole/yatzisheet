@@ -12,7 +12,8 @@ export class PlayersData {
 		pair: string, twopair: string, threesome: string, foursome: string, sStraight: string, bStraight: string, fullhouse: string, chance: string, yatzy:string }>;
   
   constructor(private nativeStorage: NativeStorage, platform: Platform) {
-	  this.players = [];
+	  	this.players = [];
+		this.load();
   }
   
   add(name, isInGame) {

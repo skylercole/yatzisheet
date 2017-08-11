@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PlayersData } from '../../app/playersdata';
+import { SettingsData } from '../../app/settingsdata';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../../pages/popover/popover';
 import { PopoverEndGamePage } from '../../pages/popoverendgame/popoverendgame';
@@ -14,14 +15,16 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 export class GamePage {
 	playersClass;
+	settings;
 	
 	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData, public popoverCtrl: PopoverController,
-		private keyboard: Keyboard) {
+		private keyboard: Keyboard, private settingsData: SettingsData) {
 			
 		// Attempt to load data if players array is empty.
 		if (playersData.players.length == 0)
 			this.playersData.load();
-		
+
+		this.settings = settingsData.settings;		
 		this.playersClass = playersData;
 	}
 	

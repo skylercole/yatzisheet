@@ -15,13 +15,13 @@ export class PlayersPage {
 	isRenaming: string;
 	copyName: string;
 
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersGame: PlayersData) {
+	constructor(public navCtrl: NavController, private alertCtrl: AlertController, public playersData: PlayersData) {
 		// Attempt to load data if players array is empty.
-		if (playersGame.players.length == 0)
-			playersGame.load();
+		if (playersData.players.length == 0)
+			this.playersData.load();
 		
-		this.players = playersGame.players;		
-		this.playersClass = playersGame;	
+		this.players = playersData.players;		
+		this.playersClass = playersData;	
 		this.isRenaming = '';
 	}	
 	
