@@ -88,11 +88,20 @@ export class GamePage {
 					
 					var val = this.calcUpper(index);					
 					
-					if (val >= 0) {
-						this.playersClass.players[index].upperTotal = val + 50;
+					if (this.settings.yatziGameType == 1){ // cottage style
+						if (val >= 0) {
+							this.playersClass.players[index].upperTotal = val + 50;
+						}
+						else {
+							this.playersClass.players[index].upperTotal = 0;
+						}
 					}
-					else {
-						this.playersClass.players[index].upperTotal = 0;
+					else if (this.settings.yatziGameType == 0){ // Nordic style
+						 this.playersClass.players[index].upperTotal = val;
+
+						 if (val >= 63){
+						 	this.playersClass.players[index].upperTotal += 50;
+						}
 					}
 			}			
 		}
@@ -247,68 +256,86 @@ export class GamePage {
 	}
 	
 	getUpperValidationArray(elementName){
-		switch(elementName){
-			case 'ones': 				
-				return ['-','X','x','-1','+1','1','-2','+2','2','0'];
-			case 'twos': 
-				return ['-','X','x','-2','+2','2','-4','+4','4','0'];
-			case 'threes': 
-				return ['-','X','x','-3','+3','3','-6','+6','6','0'];
-			case 'fours': 
-				return ['-','X','x','-4','+4','4','-8','+8','8','0'];
-			case 'fives': 
-				return ['-','X','x','-5','+5','5','-10','+10','10','0'];
-			case 'sixes': 
-				return ['-','X','x','-6','+6','6','-12','+12','12','0'];
+		if (this.settings.yatziGameType == 1) {
+			switch(elementName){
+				case 'ones': 				
+					return ['-','X','x','-1','+1','1','-2','+2','2','0'];
+				case 'twos': 
+					return ['-','X','x','-2','+2','2','-4','+4','4','0'];
+				case 'threes': 
+					return ['-','X','x','-3','+3','3','-6','+6','6','0'];
+				case 'fours': 
+					return ['-','X','x','-4','+4','4','-8','+8','8','0'];
+				case 'fives': 
+					return ['-','X','x','-5','+5','5','-10','+10','10','0'];
+				case 'sixes': 
+					return ['-','X','x','-6','+6','6','-12','+12','12','0'];
+			}
+		}
+		else if (this.settings.yatziGameType == 0) {
+			switch(elementName){
+				case 'ones': 				
+					return ['-','0','1','2','3','4','5'];
+				case 'twos': 
+					return ['-','0','2','4','6','8','10'];
+				case 'threes': 
+					return ['-','0','3','6','9','12','15'];
+				case 'fours': 
+					return ['-','0','4','8','12','16','20'];
+				case 'fives': 
+					return ['-','0','5','10','15','20','25'];
+				case 'sixes': 
+					return ['-','0','6','12','18','24','30'];
+			}
 		}
 	}
 	
 	getLowerValidationArray(elementName){
-		switch(elementName){
-			case 'pair': 				
-				return ['-','0','2','4','6','8','10','12'];
-			case 'twopair': 
-				return ['-','0','6','8','10','12','14','16','18','20','22'];
-			case 'threesome': 
-				return ['-','0','3','6','9','12','15','18'];
-			case 'foursome': 
-				return ['-','0','4','8','12','16','20','24'];
-			case 'sStraight': 
-				return ['X','x','-','0','15'];
-			case 'bStraight': 
-				return ['X','x','-','0','20'];
-			case 'fullhouse': 
-				return ['-','0','7','8','9','11','12','13','14','15','16','17','18','19','21','22','23','24','26','27','28'];
-			case 'chance': 
-				return ['-','0','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
-			case 'yatzy': 
-				return ['-','0','55','60','65','70','75','80'];
+		if (this.settings.yatziGameType == 1) {
+			switch(elementName){
+				case 'pair': 				
+					return ['-','0','2','4','6','8','10','12'];
+				case 'twopair': 
+					return ['-','0','6','8','10','12','14','16','18','20','22'];
+				case 'threesome': 
+					return ['-','0','3','6','9','12','15','18'];
+				case 'foursome': 
+					return ['-','0','4','8','12','16','20','24'];
+				case 'sStraight': 
+					return ['X','x','-','0','15'];
+				case 'bStraight': 
+					return ['X','x','-','0','20'];
+				case 'fullhouse': 
+					return ['-','0','7','8','9','11','12','13','14','15','16','17','18','19','21','22','23','24','26','27','28'];
+				case 'chance': 
+					return ['-','0','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+				case 'yatzy': 
+					return ['-','0','55','60','65','70','75','80'];
+			}
+		}
+		else if (this.settings.yatziGameType == 0) {
+			switch(elementName){
+				case 'pair': 				
+					return ['-','0','2','4','6','8','10','12'];
+				case 'twopair': 
+					return ['-','0','6','8','10','12','14','16','18','20','22'];
+				case 'threesome': 
+					return ['-','0','3','6','9','12','15','18'];
+				case 'foursome': 
+					return ['-','0','4','8','12','16','20','24'];
+				case 'sStraight': 
+					return ['X','x','-','0','15'];
+				case 'bStraight': 
+					return ['X','x','-','0','20'];
+				case 'fullhouse': 
+					return ['-','0','7','8','9','11','12','13','14','15','16','17','18','19','21','22','23','24','26','27','28'];
+				case 'chance': 
+					return ['-','0','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+				case 'yatzy': 
+					return ['-','0','50'];
+			}
 		}
 	}
-	
-	/* removePlayer(player) {
-		let alert = this.alertCtrl.create({
-		title: 'Confirm removing',
-		message: 'Do you want to remove player ' + player.name + ' from this game?',
-		buttons: [
-		  {
-			text: 'Cancel',
-			role: 'cancel',
-			handler: () => {
-			  // console.log('Cancel clicked');
-			}
-		  },
-		  {
-			text: 'Remove',
-			handler: () => {
-			  var index = this.playersClass.exists(player.name);
-			  this.players[index].isInGame = false;
-			}
-		  }
-		]
-	  });
-	  alert.present();
-	} */
 	
 	resetValues() {
 		let alert = this.alertCtrl.create({

@@ -227,9 +227,8 @@
 				<ion-col col-2>
 					<p style="font-weight: bold;text-align:center;">Total</p>
 				</ion-col>
-				<ion-col *ngFor="let x of playersClass.areInGame()" >
-					<p *ngIf="!settings.hideTotal" style="font-weight: bold;text-align:center;">{{x.total}}</p>
-					<p *ngIf="settings.hideTotal" class="blurry-text" style="font-weight: bold;text-align:center;">{{x.total}}</p>
+				<ion-col *ngFor="let x of playersClass.areInGame()" >					
+					<p [ngClass]="{'blurry-text': (settings.hideTotal && !isGameCompleted())}" style="font-weight: bold;text-align:center;">{{x.total}}</p>
 				</ion-col>
 				<ion-col *ngIf="!playersClass.isAnyPlayerInGame()">
 					<ion-item no-lines></ion-item>

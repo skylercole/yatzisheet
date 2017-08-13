@@ -8,7 +8,7 @@ export class SettingsData {
   public settings: {hideTotal: boolean, yatziGameType: number };
   
   constructor(private nativeStorage: NativeStorage, platform: Platform) {
-	  this.settings = { hideTotal: false, yatziGameType: 0 };
+	  this.settings = { hideTotal: false, yatziGameType: 0 }; // 0: nordic traditional, 1: nordic alternative
 	  this.load();
   }
   

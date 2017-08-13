@@ -30,40 +30,43 @@
 			<ion-radio checked='{{settingsClass.settings.yatziGameType == 1}}' value="1" (click)='updateGame(1)'></ion-radio>
 		  </ion-item>
 		  
-		  <ion-item >
-			<ion-label>American rules</ion-label>
-			<ion-radio checked='{{settingsClass.settings.yatziGameType == 2}}' value="2" (click)='updateGame(2)'></ion-radio>
-		  </ion-item>
 		</ion-list>
 	</ion-card>
 	
 	<ion-card *ngIf="settingsClass.settings.yatziGameType == 0"> 
 		<ion-item text-wrap >
 			<b>
-			Rules for Traditional European/Nordic yatzi
+			Special features for Traditional European/Nordic yatzy
 			</b>
 			<br/>
-				It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+					1. Upstairs section allows for results between 0 and 5 for each row, multiplied by the row value: 1-1-1 would result in 3 for 1st row.
+					<br/>
+					2. Upstairs final result adds 50 points, if the sum of all rows equals or exceeds 63 points.
+					<br/>
+					3. Straights can be marked by X, as their value is always fixed.
+					<br/>
+					4. Yatzy gives a fixed amount of 50 points.
+					<br/>
+					5. Rows that are being skipped are marked with '-' (or 0).
 		</ion-item>
 	</ion-card>
 
 	<ion-card *ngIf="settingsClass.settings.yatziGameType == 1"> 
 		<ion-item text-wrap >
 			<b>
-			Rules for Alternative Nordic yatzi
+			Special features for Alternative Nordic yatzy
 			</b>
-			<br/>
-				It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+			<br/>				
+					1. Upstairs section allows for results between -5 to +5 for each row, multiplied by the row value: 1-1-1 would result in 0 or X for 1st row. 2-2 would result in -2. 6-6-6-6 would result in 6 (or +6).
+					<br/>
+					2. Upstairs final result gives 50 points, if the sum of all rows equals or exceeds 0 points. Any extra points are added to the result. For example 0 for ones, +2 for for twos, -6 for threes, 0 for fours, +5 for fives and +6 for sixes, result in +7 as final result, which would become 57 in the upstairs total. If sum is below 0, the upstairs result is 0.
+					<br/>
+					3. Straights can be marked by X, as their value is always fixed.
+					<br/>
+					4. Yatzy gives a 55 points for yatzy of ones, 60 for yatzy of twos. Add 5 points for each number. Yatzy of sixes is 80 points.
+					<br/>
+					5. Rows that are being skipped are marked with '-' (or 0).
 		</ion-item>
 	</ion-card>
 
-	<ion-card *ngIf="settingsClass.settings.yatziGameType == 2"> 
-		<ion-item text-wrap >
-			<b>
-			Rules for American yatzee
-			</b>
-			<br/>
-				It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-		</ion-item>
-	</ion-card>
 </ion-content>
